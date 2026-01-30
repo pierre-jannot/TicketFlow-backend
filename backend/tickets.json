@@ -1,0 +1,124 @@
+[
+  {
+    "id": 1,
+    "title": "Bug bouton login",
+    "description": "Le bouton de connexion ne r\u00e9pond pas sur mobile (Android).",
+    "priority": "High",
+    "status": "Ferm\u00e9",
+    "tags": [
+      "bug",
+      "ui",
+      "mobile"
+    ],
+    "createdAt": "2026-01-16"
+  },
+  {
+    "id": 2,
+    "title": "Ajouter un filtre par priorit\u00e9",
+    "description": "Permettre de filtrer les tickets par priorit\u00e9 (Low, Medium, High) sur la page liste.",
+    "priority": "Medium",
+    "status": "En cours",
+    "tags": [
+      "feature",
+      "ux"
+    ],
+    "createdAt": "2026-01-15"
+  },
+  {
+    "id": 3,
+    "title": "Am\u00e9liorer la performance du tableau",
+    "description": "La liste de tickets devient lente au-del\u00e0 de 200 entr\u00e9es. Optimiser le rendu.",
+    "priority": "High",
+    "status": "En cours",
+    "tags": [
+      "performance",
+      "frontend"
+    ],
+    "createdAt": "2026-01-14"
+  },
+  {
+    "id": 4,
+    "title": "Ajouter une page de d\u00e9tail ticket",
+    "description": "Cr\u00e9er une page d\u00e9di\u00e9e affichant toutes les informations d'un ticket (tags, statut, priorit\u00e9, date).",
+    "priority": "Medium",
+    "status": "Ouvert",
+    "tags": [
+      "feature",
+      "ui"
+    ],
+    "createdAt": "2026-01-13"
+  },
+  {
+    "id": 5,
+    "title": "Bug tri par date",
+    "description": "Le tri par date de cr\u00e9ation est invers\u00e9 sur certains navigateurs.",
+    "priority": "Low",
+    "status": "En cours",
+    "tags": [
+      "bug",
+      "sorting"
+    ],
+    "createdAt": "2026-01-12"
+  },
+  {
+    "id": 6,
+    "title": "Ajouter des badges de statut",
+    "description": "Afficher un badge color\u00e9 selon le statut (Ouvert, En cours, Ferm\u00e9) dans la liste.",
+    "priority": "Low",
+    "status": "Ouvert",
+    "tags": [
+      "ui",
+      "ux"
+    ],
+    "createdAt": "2026-01-11"
+  },
+  {
+    "id": 7,
+    "title": "Fermer un ticket depuis la liste",
+    "description": "Permettre de passer un ticket en 'Ferm\u00e9' via un bouton d'action rapide sur la ligne.",
+    "priority": "Medium",
+    "status": "Ouvert",
+    "tags": [
+      "feature",
+      "workflow"
+    ],
+    "createdAt": "2026-01-10"
+  },
+  {
+    "id": 8,
+    "title": "Bug formulaire cr\u00e9ation ticket",
+    "description": "Le champ description accepte une valeur vide sans afficher de message d'erreur.",
+    "priority": "High",
+    "status": "Ouvert",
+    "tags": [
+      "bug",
+      "form",
+      "validation"
+    ],
+    "createdAt": "2026-01-09"
+  },
+  {
+    "id": 9,
+    "title": "Ajouter une recherche par mot-cl\u00e9",
+    "description": "Ajouter une barre de recherche pour filtrer les tickets par titre ou description.",
+    "priority": "Medium",
+    "status": "En cours",
+    "tags": [
+      "feature",
+      "search",
+      "ux"
+    ],
+    "createdAt": "2026-01-08"
+  },
+  {
+    "id": 10,
+    "title": "Documenter les statuts disponibles",
+    "description": "Ajouter une section dans la documentation expliquant les statuts et leur usage.",
+    "priority": "Low",
+    "status": "En cours",
+    "tags": [
+      "documentation"
+    ],
+    "createdAt": "2026-01-07"
+  }
+]
