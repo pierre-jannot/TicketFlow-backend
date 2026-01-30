@@ -32,8 +32,10 @@ class Status(str, Enum):
 class SortMethod(str, Enum):
     Status = "Status"
     Priority = "Priority"
-    Id = "Id"
-    Date = "Date"
+    IdAsc = "Id Asc"
+    IdDesc = "Id Desc"
+    DateAsc = "Date Asc"
+    DateDesc = "Date Desc"
     NoSort = ""
 
 class SortAndFilter(BaseModel):

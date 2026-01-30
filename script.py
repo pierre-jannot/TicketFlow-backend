@@ -84,10 +84,14 @@ def sortTickets(sortMethod,tickets):
             for value in d[key]:
                 L.append(value)
         return L
-    elif sortMethod=="Id":
+    elif sortMethod=="Id Asc":
         return sorted(tickets, key=lambda x: x["id"])
-    elif sortMethod=="Date":
+    elif sortMethod=="Id Desc":
+        return sorted(tickets, key=lambda x: x["id"], reverse=True)
+    elif sortMethod=="Date Asc":
         return sorted(tickets, key=lambda x: x["createdAt"])
+    elif sortMethod=="Date Desc":
+        return sorted(tickets, key=lambda x: x["createdAt"], reverse=True)
 
 def countTickets():
     tickets = readTickets()
