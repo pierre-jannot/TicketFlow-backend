@@ -1,5 +1,6 @@
 import json
 from datetime import date
+from classes import *
 
 def readTickets():
     with open('./tickets.json', 'r', encoding='utf-8') as file:
@@ -59,38 +60,38 @@ def deleteTicket(id):
         raise Exception("Ticket not found")
 
 def filterTickets(value,tickets):
-    L = []
+    ticketList = []
     for ticket in tickets:
         if value in ticket["tags"]:
-            L.append(ticket)
-    return L
+            ticketList.append(ticket)
+    return ticketList
     
 def sortTickets(sortMethod,tickets):
-    if sortMethod=="Status":
-        L = []
-        d = {"Ouvert" : [], "En cours" : [], "Fermé" : []}
+    if sortMethod==SortMethod.Status:
+        ticketList = []
+        ticketDictionnary = {"Ouvert" : [], "En cours" : [], "Fermé" : []}
         for ticket in tickets:
-            d[ticket["status"]].append(ticket)
-        for key in d:
-            for value in d[key]:
-                L.append(value)
-        return L
-    elif sortMethod=="Priority":
-        L = []
-        d = {"High" : [], "Medium" : [], "Low" : []}
+            ticketDictionnary[ticket["status"]].append(ticket)
+        for key in ticketDictionnary:
+            for value in ticketDictionnary[key]:
+                ticketList.append(value)
+        return ticketList
+    elif sortMethod==SortMethod.Priority:
+        ticketList = []
+        ticketDictionnary = {"High" : [], "Medium" : [], "Low" : []}
         for ticket in tickets:
-            d[ticket["priority"]].append(ticket)
-        for key in d:
-            for value in d[key]:
-                L.append(value)
-        return L
-    elif sortMethod=="Id Asc":
+            ticketDictionnary[ticket["priority"]].append(ticket)
+        for key in ticketDictionnary:
+            for value in ticketDictionnary[key]:
+                ticketList.append(value)
+        return ticketList
+    elif sortMethod==SortMethod.IdAsc:
         return sorted(tickets, key=lambda x: x["id"])
-    elif sortMethod=="Id Desc":
+    elif sortMethod==SortMethod.IdDesc:
         return sorted(tickets, key=lambda x: x["id"], reverse=True)
-    elif sortMethod=="Date Asc":
+    elif sortMethod==SortMethod.DateAsc:
         return sorted(tickets, key=lambda x: x["createdAt"])
-    elif sortMethod=="Date Desc":
+    else:
         return sorted(tickets, key=lambda x: x["createdAt"], reverse=True)
 
 def countTickets():

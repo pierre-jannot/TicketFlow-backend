@@ -1,8 +1,8 @@
 from fastapi import FastAPI, HTTPException, Request
 from script import *
+from classes import *
 from pydantic import BaseModel, Field
 from typing import List
-from enum import Enum
 from fastapi.responses import JSONResponse
 from fastapi.exceptions import RequestValidationError
 
@@ -18,25 +18,6 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
             "value": ""
         }
     )
-
-class Priority(str, Enum):
-    High = "High"
-    Medium = "Medium"
-    Low = "Low"
-
-class Status(str, Enum):
-    Open = "Ouvert"
-    InProgress = "En cours"
-    Closed = "Fermé"
-
-class SortMethod(str, Enum):
-    Status = "Status"
-    Priority = "Priority"
-    IdAsc = "Id Asc"
-    IdDesc = "Id Desc"
-    DateAsc = "Date Asc"
-    DateDesc = "Date Desc"
-    NoSort = ""
 
 class SortAndFilter(BaseModel):
     sortMethod: SortMethod
@@ -59,7 +40,7 @@ def read_root():
 def show_tickets():
     try:
         return readTickets()
-    except:
+    except FileNotFoundError:
         raise HTTPException(status_code=404, detail="Tickets not found")
 
 @app.post("/tickets/sort")
@@ -77,11 +58,10 @@ def sort_tickets(sortAndFilter: SortAndFilter):
         if len(tickets)==0:
             raise ValueError
         return tickets
-    except:
-        if not tickets:
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Tickets not found")
+    except ValueError:
             raise HTTPException(status_code=404, detail="No tickets with this sort/filter method")
-        else:
-            raise HTTPException(status_code=400, detail="Bad sort/filter method request")
 
 @app.post("/tickets")
 def add_ticket(item: NewTicket):
@@ -96,12 +76,12 @@ def update_ticket(id: int, item: UpdateTicket):
     status = item.status
     try:
         return updateTicket(id,status)
-    except:
+    except Exception:
         raise HTTPException(status_code=404, detail="Ticket not found")
 
 @app.delete("/tickets/{id}")
 def remove_ticket(id: int):
     try:
         return deleteTicket(id)
-    except:
+    except Exception:
         raise HTTPException(status_code=404, detail="Ticket not found")
