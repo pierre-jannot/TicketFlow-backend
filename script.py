@@ -43,7 +43,7 @@ def updateTicket(id, status):
         writeTickets(tickets)
         return newTicket
     else:
-        raise Exception("Ticket not found")
+        raise ValueError("Ticket not found")
 
 def deleteTicket(id):
     tickets = readTickets()
@@ -57,7 +57,7 @@ def deleteTicket(id):
         writeTickets(tickets)
         return "Ticket " + str(id) + " deleted."
     else:
-        raise Exception("Ticket not found")
+        raise ValueError("Ticket not found")
 
 def filterTickets(value,tickets):
     ticketList = []

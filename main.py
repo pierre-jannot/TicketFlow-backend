@@ -41,7 +41,7 @@ def show_tickets():
     try:
         return readTickets()
     except FileNotFoundError:
-        raise HTTPException(status_code=404, detail="Tickets not found")
+        raise HTTPException(status_code=500, detail="Internal Server Error")
 
 @app.post("/tickets/sort")
 def sort_tickets(sortAndFilter: SortAndFilter):
@@ -59,7 +59,7 @@ def sort_tickets(sortAndFilter: SortAndFilter):
             raise ValueError
         return tickets
     except FileNotFoundError:
-        raise HTTPException(status_code=404, detail="Tickets not found")
+        raise HTTPException(status_code=500, detail="Internal Server Error")
     except ValueError:
             raise HTTPException(status_code=404, detail="No tickets with this sort/filter method")
 
@@ -69,19 +69,26 @@ def add_ticket(item: NewTicket):
     description = item.description
     priority = item.priority
     tags = item.tags
-    return addTicket(title,description,priority,tags)
+    try:
+        return addTicket(title,description,priority,tags)
+    except FileNotFoundError:
+        raise HTTPException(status_code=500, detail="Internal Server Error")
 
 @app.patch("/tickets/{id}")
 def update_ticket(id: int, item: UpdateTicket):
     status = item.status
     try:
         return updateTicket(id,status)
-    except Exception:
+    except ValueError:
         raise HTTPException(status_code=404, detail="Ticket not found")
+    except FileNotFoundError:
+        raise HTTPException(status_code=500, detail="Internal Server Error")
 
 @app.delete("/tickets/{id}")
 def remove_ticket(id: int):
     try:
         return deleteTicket(id)
-    except Exception:
+    except ValueError:
         raise HTTPException(status_code=404, detail="Ticket not found")
+    except FileNotFoundError:
+        raise HTTPException(status_code=500, detail="Internal Server Error")
